@@ -1,0 +1,14 @@
+com\coursesuggestor\findright\StudentService.class
+com\coursesuggestor\findright\CourseSuggestionApplication.class
+com\coursesuggestor\findright\ReviewController.class
+com\coursesuggestor\findright\ReviewRepository.class
+com\coursesuggestor\findright\ReviewService.class
+com\coursesuggestor\findright\Student.class
+com\coursesuggestor\findright\Courses.class
+com\coursesuggestor\findright\Review.class
+com\coursesuggestor\findright\CourseRepository.class
+com\coursesuggestor\findright\CourseController.class
+com\coursesuggestor\findright\DevConfiguration.class
+com\coursesuggestor\findright\StudentRepository.class
+com\coursesuggestor\findright\CourseService.class
+com\coursesuggestor\findright\StudentController.class
