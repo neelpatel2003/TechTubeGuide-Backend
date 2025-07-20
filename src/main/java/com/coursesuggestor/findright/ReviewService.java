@@ -11,24 +11,31 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReviewService {
-   @Autowired 
+   @Autowired
    private ReviewRepository reviewRepository;
-   @Autowired 
+   @Autowired
    private MongoTemplate mongoTemplate;
-   public List<Review> allReviews(){
+   @Autowired
+   private CourseRepository courseRepository;
+
+   public List<Review> allReviews() {
       return reviewRepository.findAll();
    }
-   
-   public Optional<Review> singleReview(String userName){
-      return  reviewRepository.findReviewByUser(userName); 
+
+   public Optional<Review> singleReview(String userName) {
+      return reviewRepository.findReviewByUser(userName);
    }
 
-   public Review createReview(String description,String userName,int courseId){
-      Review review = reviewRepository.insert(new Review(description,userName));
-      mongoTemplate.update(Courses.class).matching(Criteria.where("courseId").is(courseId)).apply(new Update().push("reviews",review)).first();
-
+   public Review createReview(String description, String userName, String courseName) {
+      List<Courses> courses = courseRepository.findAllBychannelName(courseName);
+      if (courses.isEmpty()) {
+         throw new RuntimeException("Course not found: " + courseName);
+      }
+      int courseId = courses.get(0).getCourseId(); // Use the first match
+      Review review = reviewRepository.insert(new Review(description, userName));
+      mongoTemplate.update(Courses.class).matching(Criteria.where("courseId").is(courseId))
+            .apply(new Update().push("reviews", review)).first();
       return review;
    }
 
 }
-

@@ -23,9 +23,11 @@ public class ReviewController {
    private ReviewService reviewService;
 
    @PostMapping
-   public ResponseEntity<Review> addReview(@RequestBody Map< String, String> payload) {
+   public ResponseEntity<Review> addReview(@RequestBody Map<String, String> payload) {
       System.out.println(payload.toString());
-      return new ResponseEntity<Review>(reviewService.createReview(payload.get("Description"),payload.get("userName"),Integer.parseInt(payload.get("courseId"))),HttpStatus.CREATED);
+      return new ResponseEntity<Review>(
+            reviewService.createReview(payload.get("Description"), payload.get("userName"), payload.get("courseName")),
+            HttpStatus.CREATED);
    }
 
    @GetMapping

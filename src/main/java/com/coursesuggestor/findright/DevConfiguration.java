@@ -9,8 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Profile("development")
 public class DevConfiguration implements WebMvcConfigurer {
 
-   @SuppressWarnings("null")
-  @Override
+   @Override
    public void addCorsMappings(CorsRegistry registry) {
       registry.addMapping("/**")
             .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS").allowedOrigins("*");
